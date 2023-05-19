@@ -24,7 +24,7 @@
  * The MIT License (MIT)
  *
  *  This file is part of the JoyStick Project (https://github.com/bobboteck/JoyStick).
- *	Copyright (c) 2015 Roberto D'Amico (Bobboteck).
+ *  Copyright (c) 2015 Roberto D'Amico (Bobboteck).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -215,26 +215,29 @@ var JoyStick = (function(container, parameters, callback)
 
     function onTouchEnd(event) 
     {
-        pressed = 0;
-        // If required reset position store variable
-        if(autoReturnToCenter)
+        if(pressed === 1 )
         {
-            movedX = centerX;
-            movedY = centerY;
-        }
-        // Delete canvas
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        // Redraw object
-        drawExternal();
-        drawInternal();
+            pressed = 0;
+            // If required reset position store variable
+            if(autoReturnToCenter)
+            {
+                movedX = centerX;
+                movedY = centerY;
+            }
+            // Delete canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            // Redraw object
+            drawExternal();
+            drawInternal();
 
-        // Set attribute of callback
-        StickStatus.xPosition = movedX;
-        StickStatus.yPosition = movedY;
-        StickStatus.x = (100*((movedX - centerX)/maxMoveStick)).toFixed();
-        StickStatus.y = ((100*((movedY - centerY)/maxMoveStick))*-1).toFixed();
-        StickStatus.cardinalDirection = getCardinalDirection();
-        callback(StickStatus);
+            // Set attribute of callback
+            StickStatus.xPosition = movedX;
+            StickStatus.yPosition = movedY;
+            StickStatus.x = (100*((movedX - centerX)/maxMoveStick)).toFixed();
+            StickStatus.y = ((100*((movedY - centerY)/maxMoveStick))*-1).toFixed();
+            StickStatus.cardinalDirection = getCardinalDirection();
+            callback(StickStatus);
+        }
     }
 
     /**
@@ -281,26 +284,29 @@ var JoyStick = (function(container, parameters, callback)
 
     function onMouseUp(event) 
     {
-        pressed = 0;
-        // If required reset position store variable
-        if(autoReturnToCenter)
+        if(pressed === 1 )
         {
-            movedX = centerX;
-            movedY = centerY;
-        }
-        // Delete canvas
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        // Redraw object
-        drawExternal();
-        drawInternal();
+            pressed = 0;
+            // If required reset position store variable
+            if(autoReturnToCenter)
+            {
+                movedX = centerX;
+                movedY = centerY;
+            }
+            // Delete canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            // Redraw object
+            drawExternal();
+            drawInternal();
 
-        // Set attribute of callback
-        StickStatus.xPosition = movedX;
-        StickStatus.yPosition = movedY;
-        StickStatus.x = (100*((movedX - centerX)/maxMoveStick)).toFixed();
-        StickStatus.y = ((100*((movedY - centerY)/maxMoveStick))*-1).toFixed();
-        StickStatus.cardinalDirection = getCardinalDirection();
-        callback(StickStatus);
+            // Set attribute of callback
+            StickStatus.xPosition = movedX;
+            StickStatus.yPosition = movedY;
+            StickStatus.x = (100*((movedX - centerX)/maxMoveStick)).toFixed();
+            StickStatus.y = ((100*((movedY - centerY)/maxMoveStick))*-1).toFixed();
+            StickStatus.cardinalDirection = getCardinalDirection();
+            callback(StickStatus);
+        }
     }
 
     function getCardinalDirection()
